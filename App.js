@@ -6,7 +6,7 @@ import Main from './src/Layouts/main'
 export default function App() {
   return (
     <View>
-      <StatusBar style='light' />
+      <StatusBar style='auto' />
       <Main />
     </View>
   )

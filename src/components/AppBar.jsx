@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, ScrollView, View, Text } from 'react-native'
+import { StyleSheet, ScrollView, View, Text, BackHandler } from 'react-native'
 import Constants from 'expo-constants'
 
 const AppBar = () => {
@@ -18,15 +18,13 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: 'black',
-    paddingTop: Constants.statusBarHeight + 10,
+    paddingTop: Constants.statusBarHeight,
     paddingLeft: 10,
   },
   scroll: {
     paddingBottom: 10,
   },
   text: {
-    color: 'white',
     fontWeight: '900',
     fontSize: 28,
   },
