@@ -9,6 +9,10 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native'
+// Icon imports
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import TodoItem from '../components/TodoItem'
 
 const NotesPage = () => {
   const [modalVisible, setModalVisible] = useState(false)
@@ -41,13 +45,16 @@ const NotesPage = () => {
           </Modal>
         </View>
         {/* Lista de tareas */}
-        <Text>Hola</Text>
+        <TodoItem />
       </ScrollView>
+      {/* Button to add a new task */}
       <Pressable
         style={[styles.buttonOpen, styles.bottomLeft]}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.addText}>+</Text>
+        <View>
+          <FontAwesomeIcon icon={faPlus} size={18}/>
+        </View>
       </Pressable>
     </View>
   )
@@ -58,7 +65,7 @@ const styles = StyleSheet.create({
     height: '85%',
   },
   scrollView: {
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   centeredView: {
     flex: 1,
@@ -95,11 +102,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  addText: {
-    color: 'white',
-    fontWeight: '900',
-    fontSize: 26,
-  },
+  addButton: {},
   bottomLeft: {
     position: 'absolute',
     bottom: 10,
