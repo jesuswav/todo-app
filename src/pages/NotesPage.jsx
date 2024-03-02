@@ -12,6 +12,7 @@ import {
 // Icon imports
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faList, faUser } from '@fortawesome/free-solid-svg-icons'
+import UserPorfile from '../components/UserPorfile'
 import TodoItem from '../components/TodoItem'
 import NewTask from '../components/NewTask'
 
@@ -33,14 +34,20 @@ const NotesPage = () => {
           >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>Add a new task!</Text>
-                <TextInput value='name' />
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(!modalVisible)}
-                >
-                  <Text style={styles.textStyle}>Add</Text>
-                </Pressable>
+                <View style={styles.porfileContainer}>
+                  <View style={styles.header}>
+                    <Text style={styles.modalText}>User information</Text>
+                  </View>
+                  <UserPorfile />
+                </View>
+                <View style={{ width: '100%' }}>
+                  <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() => setModalVisible(!modalVisible)}
+                  >
+                    <Text style={styles.textStyle}>Close</Text>
+                  </Pressable>
+                </View>
               </View>
             </View>
           </Modal>
@@ -100,8 +107,12 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    width: '90%',
+    height: '80%',
+    padding: 18,
+    paddingTop: 24,
     alignItems: 'center',
+    justifyContent: 'space-between',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -111,10 +122,23 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  porfileContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
   button: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    height: 42,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(224, 125, 249, 0.5)',
   },
   buttonOpen: {
     backgroundColor: 'rgba(224, 125, 249, 0.5)',
@@ -131,17 +155,16 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 18,
   },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
   textStyle: {
-    color: 'white',
+    color: 'rgba(164, 32, 197, 1)',
     fontWeight: 'bold',
     textAlign: 'center',
   },
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+    fontSize: 22,
+    fontWeight: 'bold',
   },
 })
 

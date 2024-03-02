@@ -18,7 +18,7 @@ const TodoItem = () => {
         style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
       >
         <Pressable onPress={() => setCheck(!check)}>
-          {(check == false && (
+          {(check && (
             <FontAwesomeIcon
               icon={faSquare}
               size={38}
@@ -33,7 +33,9 @@ const TodoItem = () => {
           )}
         </Pressable>
         <View>
-          <Text style={{ fontSize: 16, fontWeight: '' }}>{data.taskName}</Text>
+          <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+            {data.taskName}
+          </Text>
         </View>
       </View>
       <View>
