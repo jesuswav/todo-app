@@ -9,7 +9,7 @@ const AppBar = () => {
     <View style={styles.container}>
       <FontAwesomeIcon
         icon={faNoteSticky}
-        size={24}
+        size={44}
         style={{ marginRight: 2 }}
       />
       <Text style={styles.text}>Notes</Text>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: '900',
-    fontSize: 28,
+    fontSize: 36,
   },
 })
 

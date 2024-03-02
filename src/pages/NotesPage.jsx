@@ -11,8 +11,9 @@ import {
 } from 'react-native'
 // Icon imports
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faList, faUser } from '@fortawesome/free-solid-svg-icons'
 import TodoItem from '../components/TodoItem'
+import NewTask from '../components/NewTask'
 
 const NotesPage = () => {
   const [modalVisible, setModalVisible] = useState(false)
@@ -45,7 +46,25 @@ const NotesPage = () => {
           </Modal>
         </View>
         {/* Lista de tareas */}
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+          }}
+        >
+          <FontAwesomeIcon icon={faList} size={24} style={{ marginRight: 6 }} />
+          <Text
+            style={{
+              fontSize: 22,
+              fontWeight: 'bold',
+              marginBottom: 12,
+            }}
+          >
+            Tasks to finish
+          </Text>
+        </View>
         <TodoItem />
+        <NewTask />
       </ScrollView>
       {/* Button to add a new task */}
       <Pressable
@@ -53,7 +72,11 @@ const NotesPage = () => {
         onPress={() => setModalVisible(true)}
       >
         <View>
-          <FontAwesomeIcon icon={faPlus} size={18}/>
+          <FontAwesomeIcon
+            icon={faUser}
+            size={20}
+            style={{ color: 'rgba(164, 32, 197, 1)' }}
+          />
         </View>
       </Pressable>
     </View>
@@ -65,7 +88,7 @@ const styles = StyleSheet.create({
     height: '85%',
   },
   scrollView: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 22,
   },
   centeredView: {
     flex: 1,
@@ -94,7 +117,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: '#F194FF',
+    backgroundColor: 'rgba(224, 125, 249, 0.5)',
     height: 48,
     width: 48,
     borderRadius: '50%',
@@ -105,8 +128,8 @@ const styles = StyleSheet.create({
   addButton: {},
   bottomLeft: {
     position: 'absolute',
-    bottom: 10,
-    right: 10,
+    bottom: 0,
+    right: 18,
   },
   buttonClose: {
     backgroundColor: '#2196F3',
