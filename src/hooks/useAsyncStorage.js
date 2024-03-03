@@ -25,18 +25,9 @@ const useAsyncStorage = () => {
     fetchData()
   }, [])
 
-  const limpiarAsyncStorage = async () => {
-    try {
-      await AsyncStorage.clear()
-      console.log('AsyncStorage limpiado exitosamente')
-    } catch (error) {
-      console.error('Error al limpiar AsyncStorage:', error)
-    }
-  }
-
   // Create a new todo
-  async function createTodo(todos) {
-    await AsyncStorage.setItem('todos', JSON.stringify(todos))
+  function createTodo(todos) {
+    AsyncStorage.setItem('todos', JSON.stringify(todos))
   }
   return { data, createTodo }
 }

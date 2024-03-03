@@ -20,8 +20,17 @@ function TodoProvider({ children }) {
     })
   }
 
+  const deleteTodo = (text) => {
+    const newTodos = [...todos]
+    const todoIndex = newTodos.findIndex((todo) => todo.text === text)
+    newTodos.splice(todoIndex, 1)
+    saveTodos(newTodos)
+    setTodos(newTodos)
+    console.log('Todo borrado')
+  }
+
   return (
-    <TodoContext.Provider value={{ todos, setTodos, addTodos }}>
+    <TodoContext.Provider value={{ todos, setTodos, addTodos, deleteTodo }}>
       {children}
     </TodoContext.Provider>
   )

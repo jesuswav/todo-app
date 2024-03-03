@@ -1,13 +1,14 @@
-import react from 'react'
+import react, { useContext } from 'react'
 import { useState } from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { faSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
-import { TextInput } from 'react-native'
+import { TodoContext } from '../context'
 
 const TodoItem = (data) => {
   const [check, setCheck] = useState(false)
+  const { deleteTodo } = useContext(TodoContext)
   return (
     <View style={styles.itemContainer}>
       <View
@@ -19,7 +20,7 @@ const TodoItem = (data) => {
             console.log(data.data)
           }}
         >
-          {(check && (
+          {(data.data.completed === false && (
             <FontAwesomeIcon
               icon={faSquare}
               size={38}
@@ -39,9 +40,9 @@ const TodoItem = (data) => {
           </Text>
         </View>
       </View>
-      <View>
+      <Pressable onPress={() => deleteTodo(data.data.text)}>
         <FontAwesomeIcon icon={faTrashAlt} size={28} />
-      </View>
+      </Pressable>
     </View>
   )
 }

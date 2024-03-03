@@ -12,6 +12,7 @@ import {
 // Icon imports
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faList, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faSquarePlus } from '@fortawesome/free-regular-svg-icons'
 import UserPorfile from '../components/UserPorfile'
 import TodoItem from '../components/TodoItem'
 import NewTask from '../components/NewTask'
@@ -72,9 +73,23 @@ const NotesPage = () => {
             Tasks to finish
           </Text>
         </View>
-        {(todos &&
+        {console.log(todos)}
+        {(todos.length !== 0 &&
           todos.map((todo, i) => <TodoItem key={i} data={todo} />)) || (
-          <Text>Hola</Text>
+          <View
+            style={{
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <FontAwesomeIcon icon={faSquarePlus} size={26} color='gray' style={{marginRight: 6}}/>
+            <Text style={{ fontSize: 18, fontWeight: '600', color: 'gray' }}>
+              Create your first todo!!
+            </Text>
+          </View>
         )}
         {console.log('Todossss', todos)}
         <NewTask />
