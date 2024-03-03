@@ -20,6 +20,16 @@ function TodoProvider({ children }) {
     })
   }
 
+  // Function to update the completed state
+  const completeTodo = (text) => {
+    const newTodos = [...todos]
+    const todoIndex = newTodos.findIndex((todo) => todo.text === text)
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed
+    setTodos(newTodos)
+    saveTodos(newTodos)
+  }
+
+  // Delete todo function
   const deleteTodo = (text) => {
     const newTodos = [...todos]
     const todoIndex = newTodos.findIndex((todo) => todo.text === text)
@@ -30,7 +40,9 @@ function TodoProvider({ children }) {
   }
 
   return (
-    <TodoContext.Provider value={{ todos, setTodos, addTodos, deleteTodo }}>
+    <TodoContext.Provider
+      value={{ todos, setTodos, addTodos, deleteTodo, completeTodo }}
+    >
       {children}
     </TodoContext.Provider>
   )

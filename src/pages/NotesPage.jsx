@@ -73,25 +73,31 @@ const NotesPage = () => {
             Tasks to finish
           </Text>
         </View>
-        {console.log(todos)}
-        {(todos.length !== 0 &&
-          todos.map((todo, i) => <TodoItem key={i} data={todo} />)) || (
-          <View
-            style={{
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <FontAwesomeIcon icon={faSquarePlus} size={26} color='gray' style={{marginRight: 6}}/>
-            <Text style={{ fontSize: 18, fontWeight: '600', color: 'gray' }}>
-              Create your first todo!!
-            </Text>
-          </View>
-        )}
-        {console.log('Todossss', todos)}
+        <View style={{marginTop: 18}}>
+          {(todos.length !== 0 &&
+            todos.map((todo, i) => <TodoItem key={i} data={todo} />)) || (
+            <View
+              style={{
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: 18,
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faSquarePlus}
+                size={26}
+                color='gray'
+                style={{ marginRight: 6 }}
+              />
+              <Text style={{ fontSize: 18, fontWeight: '600', color: 'gray' }}>
+                Create your first todo!!
+              </Text>
+            </View>
+          )}
+        </View>
         <NewTask />
       </ScrollView>
       {/* Button to add a new task */}

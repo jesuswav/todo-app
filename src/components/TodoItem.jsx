@@ -7,19 +7,13 @@ import { faSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import { TodoContext } from '../context'
 
 const TodoItem = (data) => {
-  const [check, setCheck] = useState(false)
-  const { deleteTodo } = useContext(TodoContext)
+  const { deleteTodo, completeTodo } = useContext(TodoContext)
   return (
     <View style={styles.itemContainer}>
       <View
         style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
       >
-        <Pressable
-          onPress={() => {
-            setCheck(!check)
-            console.log(data.data)
-          }}
-        >
+        <Pressable onPress={() => completeTodo(data.data.text)}>
           {(data.data.completed === false && (
             <FontAwesomeIcon
               icon={faSquare}
