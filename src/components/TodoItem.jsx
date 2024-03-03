@@ -4,20 +4,21 @@ import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
 import { faSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
+import { TextInput } from 'react-native'
 
-const data = {
-  taskName: 'Wash the dishes',
-  completed: true,
-}
-
-const TodoItem = () => {
+const TodoItem = (data) => {
   const [check, setCheck] = useState(false)
   return (
     <View style={styles.itemContainer}>
       <View
         style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
       >
-        <Pressable onPress={() => setCheck(!check)}>
+        <Pressable
+          onPress={() => {
+            setCheck(!check)
+            console.log(data.data)
+          }}
+        >
           {(check && (
             <FontAwesomeIcon
               icon={faSquare}
@@ -33,8 +34,8 @@ const TodoItem = () => {
           )}
         </Pressable>
         <View>
-          <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-            {data.taskName}
+          <Text style={{ fontSize: 18, fontWeight: '600' }}>
+            {data.data.text}
           </Text>
         </View>
       </View>

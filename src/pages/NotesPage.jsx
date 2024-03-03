@@ -1,4 +1,4 @@
-import react from 'react'
+import react, { useContext } from 'react'
 import { useState } from 'react'
 import {
   ScrollView,
@@ -15,9 +15,11 @@ import { faList, faUser } from '@fortawesome/free-solid-svg-icons'
 import UserPorfile from '../components/UserPorfile'
 import TodoItem from '../components/TodoItem'
 import NewTask from '../components/NewTask'
+import { TodoContext } from '../context'
 
 const NotesPage = () => {
   const [modalVisible, setModalVisible] = useState(false)
+  const { todos, setTodos } = useContext(TodoContext)
 
   return (
     <View style={styles.container}>
@@ -70,7 +72,11 @@ const NotesPage = () => {
             Tasks to finish
           </Text>
         </View>
-        <TodoItem />
+        {(todos &&
+          todos.map((todo, i) => <TodoItem key={i} data={todo} />)) || (
+          <Text>Hola</Text>
+        )}
+        {console.log('Todossss', todos)}
         <NewTask />
       </ScrollView>
       {/* Button to add a new task */}
