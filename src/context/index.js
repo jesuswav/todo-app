@@ -14,6 +14,7 @@ function TodoProvider({ children }) {
     setTodos(todoList)
   }, [todoList])
 
+  // FUNCTIONS FOR TODOS
   const addTodos = (text) => {
     setTodos((prevTodos) => {
       // En esta función, prevTodos representa el estado actual de "todos"
@@ -41,6 +42,8 @@ function TodoProvider({ children }) {
     setTodos(newTodos)
     console.log('Todo borrado')
   }
+
+  // FUNCTIONS FOR USERS
 
   return (
     <TodoContext.Provider

@@ -7,6 +7,18 @@ const todoModel = {
   completed: false,
 }
 
+const userModel = {
+  token: '001',
+  username: 'jesuswav',
+  password: '1234',
+}
+
+const noteModel = {
+  title: 'lista de compras',
+  note: 'Contenido de la nota',
+  date: '12/04/03',
+}
+
 const useAsyncStorage = () => {
   const [data, setData] = useState([])
 
@@ -29,7 +41,15 @@ const useAsyncStorage = () => {
   function createTodo(todos) {
     AsyncStorage.setItem('todos', JSON.stringify(todos))
   }
-  return { data, createTodo }
+  // Create create note
+  function createNote(note) {
+    AsyncStorage.setItem('notes', JSON.stringify(note))
+  }
+  // Create user
+  function createUser(user) {
+    AsyncStorage.setItem('notes', JSON.stringify(user))
+  }
+  return { data, createTodo, createUser }
 }
 
 export default useAsyncStorage
