@@ -1,24 +1,26 @@
 import react, { useContext, useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import LoggedScreen from '../components/LoggedScreeen'
-import getFetch from '../hooks/useFetch'
-import useFetch from '../hooks/useFetch'
+import NotLoggedScreen from '../components/NotLoggedScreen'
+import { TodoContext } from '../context'
 
 const NotesPage = () => {
-  const [user, setUser] = useState()
+  // const [user, setUser] = useState()
 
-  const { userData: fetchedUser, error: error } = useFetch(
-    'jonhsteven@email.com'
-  )
+  // const { userData: fetchedUser, error: error } = useFetch(
+  //   'jonhsteven@email.com'
+  // )
 
-  useEffect(() => {
-    setUser(fetchedUser)
-    console.log(user)
-  }, [])
+  // useEffect(() => {
+  //   setUser(fetchedUser)
+  //   console.log(user)
+  // }, [])
+
+  const { logged, setLogged } = useContext(TodoContext)
 
   return (
     <View style={styles.container}>
-      <LoggedScreen></LoggedScreen>
+      {(logged && <LoggedScreen />) || <NotLoggedScreen></NotLoggedScreen>}
     </View>
   )
 }

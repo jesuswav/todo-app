@@ -20,6 +20,7 @@ import { TodoContext } from '../context'
 const LoggedScreen = () => {
   const [modalVisible, setModalVisible] = useState(false)
   const { todos, setTodos } = useContext(TodoContext)
+  const { logged, setLogged } = useContext(TodoContext)
 
   return (
     <>
@@ -55,7 +56,7 @@ const LoggedScreen = () => {
                       borderWidth: 2,
                       marginTop: 10,
                     }}
-                    onPress={() => setModalVisible(!modalVisible)}
+                    onPress={() => setLogged(!logged)}
                   >
                     <Text
                       style={{

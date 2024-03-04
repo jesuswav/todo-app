@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: Constants.statusBarHeight,
-    paddingLeft: 10,
+    marginTop: 4,
+    paddingLeft: 14,
   },
   scroll: {
     display: 'flex',

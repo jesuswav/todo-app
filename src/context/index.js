@@ -5,6 +5,8 @@ const TodoContext = React.createContext()
 
 function TodoProvider({ children }) {
   const [todos, setTodos] = useState([])
+  const [logged, setLogged] = useState(false)
+  const [loginModal, setLoginModal] = useState(false)
 
   const { data: todoList, createTodo: saveTodos } = useAsyncStorage()
   useEffect(() => {
@@ -41,7 +43,17 @@ function TodoProvider({ children }) {
 
   return (
     <TodoContext.Provider
-      value={{ todos, setTodos, addTodos, deleteTodo, completeTodo }}
+      value={{
+        todos,
+        setTodos,
+        logged,
+        setLogged,
+        loginModal,
+        setLoginModal,
+        addTodos,
+        deleteTodo,
+        completeTodo,
+      }}
     >
       {children}
     </TodoContext.Provider>

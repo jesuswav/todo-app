@@ -49,13 +49,15 @@ const NewTask = () => {
                   <TextInput
                     style={{
                       fontSize: 20,
-                      fontWeight: '600',
+                      fontWeight: '500',
                       borderColor: 'rgba(193, 193, 193, 0.67)',
                       borderWidth: 2,
                       padding: 10,
                       width: '100%',
                       borderRadius: 22,
+                      textAlign: 'center',
                       marginBottom: 16,
+                      color: 'gray',
                     }}
                     onChange={(event) => setInputValue(event.nativeEvent.text)}
                     placeholder='Title'
@@ -135,10 +137,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
   },
   header: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
   },
   button: {
     borderRadius: 20,
