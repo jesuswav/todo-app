@@ -7,6 +7,7 @@ function TodoProvider({ children }) {
   const [todos, setTodos] = useState([])
   const [logged, setLogged] = useState(false)
   const [loginModal, setLoginModal] = useState(false)
+  const [registerModal, setRegisterModal] = useState(false)
 
   const { data: todoList, createTodo: saveTodos } = useAsyncStorage()
   useEffect(() => {
@@ -50,6 +51,8 @@ function TodoProvider({ children }) {
         setLogged,
         loginModal,
         setLoginModal,
+        registerModal,
+        setRegisterModal,
         addTodos,
         deleteTodo,
         completeTodo,

@@ -15,8 +15,8 @@ const useAsyncStorage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const jsonValue = await AsyncStorage.getItem('todos')
-        setData(jsonValue != null ? JSON.parse(jsonValue) : [])
+        const jsonTodos = await AsyncStorage.getItem('todos')
+        setData(jsonTodos != null ? JSON.parse(jsonTodos) : [])
       } catch (error) {
         console.error('Error al obtener datos de AsyncStorage:', error)
       }

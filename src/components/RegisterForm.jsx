@@ -9,15 +9,15 @@ import {
 } from 'react-native'
 import { TodoContext } from '../context'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const { logged, setLogged } = useContext(TodoContext)
-  const { loginModal, setLoginModal } = useContext(TodoContext)
+  const { registerModal, setRegisterModal } = useContext(TodoContext)
 
   return (
     <View style={styles.centeredView}>
-      <Modal animationType='slide' transparent={true} visible={loginModal}>
+      <Modal animationType='slide' transparent={true} visible={registerModal}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.porfileContainer}>
@@ -30,8 +30,12 @@ const LoginForm = () => {
                     justifyContent: 'center',
                   }}
                 >
-                  <FontAwesomeIcon icon={faRightToBracket} size={28} style={{marginRight: 6}}/>
-                  <Text style={styles.modalText}>Log in!!</Text>
+                  <FontAwesomeIcon
+                    icon={faUserPlus}
+                    size={28}
+                    style={{ marginRight: 6 }}
+                  />
+                  <Text style={styles.modalText}>Register</Text>
                 </View>
                 <Text
                   style={{
@@ -103,8 +107,8 @@ const LoginForm = () => {
                   marginTop: 10,
                 }}
                 onPress={() => {
-                  setLogged(!logged)
-                  setLoginModal(false)
+                  setLogged(true)
+                  setRegisterModal(false)
                 }}
               >
                 <Text
@@ -114,12 +118,12 @@ const LoginForm = () => {
                     textAlign: 'center',
                   }}
                 >
-                  Log in
+                  Go!
                 </Text>
               </Pressable>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => setLoginModal(!loginModal)}
+                onPress={() => setRegisterModal(!registerModal)}
               >
                 <Text style={styles.textStyle}>Cancel</Text>
               </Pressable>
@@ -204,4 +208,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default LoginForm
+export default RegisterForm

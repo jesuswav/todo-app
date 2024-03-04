@@ -24,6 +24,24 @@ const LoggedScreen = () => {
 
   return (
     <>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          marginTop: 14,
+          marginLeft: 26
+        }}
+      >
+        <FontAwesomeIcon icon={faList} size={24} style={{ marginRight: 6 }} />
+        <Text
+          style={{
+            fontSize: 22,
+            fontWeight: 'bold',
+          }}
+        >
+          Tasks to finish
+        </Text>
+      </View>
       <ScrollView style={styles.scrollView}>
         <View style={styles.centeredView}>
           <Modal
@@ -80,24 +98,7 @@ const LoggedScreen = () => {
           </Modal>
         </View>
         {/* Lista de tareas */}
-        <View
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-          }}
-        >
-          <FontAwesomeIcon icon={faList} size={24} style={{ marginRight: 6 }} />
-          <Text
-            style={{
-              fontSize: 22,
-              fontWeight: 'bold',
-              marginBottom: 12,
-            }}
-          >
-            Tasks to finish
-          </Text>
-        </View>
-        <View style={{ marginTop: 18 }}>
+        <View style={{ marginTop: 0 }}>
           {(todos.length !== 0 &&
             todos.map((todo, i) => <TodoItem key={i} data={todo} />)) || (
             <View
