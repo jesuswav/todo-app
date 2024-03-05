@@ -5,16 +5,32 @@ const TodoContext = React.createContext()
 
 function TodoProvider({ children }) {
   const [todos, setTodos] = useState([])
+  const [notes, setNotes] = useState([])
+  // const [users, setUsers] = useState([])
+
   const [logged, setLogged] = useState(false)
   const [loginModal, setLoginModal] = useState(false)
   const [registerModal, setRegisterModal] = useState(false)
+  const [noteModal, setNoteModal] = useState(false)
+  const [newNoteModal, setNewNoteModal] = useState(false)
 
-  const { data: todoList, createTodo: saveTodos } = useAsyncStorage()
+  const {
+    data: todoList,
+    notes: notesList,
+    users: usersList,
+    createTodo: saveTodos,
+    createNote: saveNotes,
+    createUser: saveUser,
+  } = useAsyncStorage()
   useEffect(() => {
     setTodos(todoList)
-  }, [todoList])
+    setNotes(notesList)
+    // setUsers(usersList)
+  }, [todoList, notesList])
 
-  // FUNCTIONS FOR TODOS
+  console.log(notes)
+
+  // FUNCTIONS FOR TODOS ----------
   const addTodos = (text) => {
     setTodos((prevTodos) => {
       // En esta función, prevTodos representa el estado actual de "todos"
@@ -24,7 +40,7 @@ function TodoProvider({ children }) {
     })
   }
 
-  // Function to update the completed state
+  // Function to update todo completed state
   const completeTodo = (text) => {
     const newTodos = [...todos]
     const todoIndex = newTodos.findIndex((todo) => todo.text === text)
@@ -40,10 +56,36 @@ function TodoProvider({ children }) {
     newTodos.splice(todoIndex, 1)
     saveTodos(newTodos)
     setTodos(newTodos)
-    console.log('Todo borrado')
   }
 
-  // FUNCTIONS FOR USERS
+  // FUNCTIONS FOR NOTES --------
+  const addNotes = (note) => {
+    setNotes((prevNotes) => {
+      const newNotes = [...prevNotes, { title: note.title, note: note.note }]
+      saveNotes(newNotes)
+      return newNotes
+    })
+  }
+
+  const updateNotes = (update) => {
+    const newNotes = [...notes]
+    const noteIndex = newNotes.findIndex((note) => note.title === update.title)
+    newNotes[noteIndex].title = update.title
+    newNotes[noteIndex].note = update.note
+    setNotes(newNotes)
+    saveNotes(newNotes)
+  }
+
+  const deleteNote = (toDelete) => {
+    const newNotes = [...notes]
+    const noteIndex = newNotes.findIndex(
+      (note) => note.title === toDelete.title
+    )
+    newNotes.splice(noteIndex, 1)
+    saveNotes(newNotes)
+    setNotes(newNotes)
+    console.log('Nota borrada')
+  }
 
   return (
     <TodoContext.Provider
@@ -56,9 +98,16 @@ function TodoProvider({ children }) {
         setLoginModal,
         registerModal,
         setRegisterModal,
+        noteModal,
+        setNoteModal,
+        newNoteModal,
+        setNewNoteModal,
         addTodos,
         deleteTodo,
         completeTodo,
+        addNotes,
+        updateNotes,
+        deleteNote,
       }}
     >
       {children}

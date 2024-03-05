@@ -22,6 +22,7 @@ import { faSquarePlus } from '@fortawesome/free-regular-svg-icons'
 import UserPorfile from '../components/UserPorfile'
 import TodoItem from '../components/TodoItem'
 import NewTask from '../components/NewTask'
+import NotesPage from './NotesPage'
 import { TodoContext } from '../context'
 
 const LoggedScreen = () => {
@@ -126,18 +127,19 @@ const LoggedScreen = () => {
           display: 'flex',
           flexDirection: 'row',
           marginTop: 6,
-          marginBottom: 12,
+          marginBottom: 8,
         }}
       >
         <FontAwesomeIcon
           icon={faHourglass}
-          size={28}
+          size={32}
           style={{ marginRight: 6 }}
         />
         <Text
           style={{
-            fontSize: 24,
+            fontSize: 26,
             fontWeight: 'bold',
+            paddingBottom: 18,
           }}
         >
           Tasks to finish
@@ -155,20 +157,21 @@ const LoggedScreen = () => {
           display: 'flex',
           flexDirection: 'row',
           marginTop: 6,
-          marginBottom: 12,
+          marginBottom: 8,
         }}
       >
-        <FontAwesomeIcon icon={faList} size={28} style={{ marginRight: 6 }} />
+        <FontAwesomeIcon icon={faList} size={32} style={{ marginRight: 6 }} />
         <Text
           style={{
-            fontSize: 24,
+            fontSize: 26,
             fontWeight: 'bold',
+            paddingBottom: 18,
           }}
         >
           Your Notes
         </Text>
       </View>
-      <Text>Note Screen</Text>
+      <NotesPage />
     </View>
   )
 

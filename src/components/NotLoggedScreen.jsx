@@ -112,7 +112,7 @@ const NotLoggedScreen = () => {
           ></View>
         </View>
         <Pressable
-          style={[styles.button, styles.buttonClose]}
+          style={[styles.button]}
           onPress={() => setRegisterModal(!registerModal)}
         >
           <Text style={styles.textStyle}>Sing up</Text>

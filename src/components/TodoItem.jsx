@@ -17,13 +17,13 @@ const TodoItem = (data) => {
           {(data.data.completed === false && (
             <FontAwesomeIcon
               icon={faSquare}
-              size={38}
+              size={34}
               style={{ marginRight: 4 }}
             />
           )) || (
             <FontAwesomeIcon
               icon={faCheckSquare}
-              size={38}
+              size={34}
               style={{ marginRight: 4, color: 'rgba(164, 32, 197, 1)' }}
             />
           )}
@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    marginBottom: 10,
+    marginBottom: 4,
+    paddingHorizontal: 10,
   },
 })
 
