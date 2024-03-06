@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text } from 'react-native'
 import NoteItem from './NoteItem'
 import NewNote from './NewNote'
+import NoteModal from './NoteModal'
+import { TodoContext } from '../context'
 
 const note = {
   title: 'Note title',
@@ -9,11 +11,18 @@ const note = {
 }
 
 const NotesPage = () => {
+  const { notes, setNotes } = useContext(TodoContext)
+  const { modalData, setModalData } = useContext(TodoContext)
+
   return (
-    <View>
-      <NoteItem data={note} />
-      <NewNote />
-    </View>
+    <>
+      <View>
+        {notes &&
+          notes.map((note, index) => <NoteItem key={index} data={note} />)}
+        <NewNote />
+      </View>
+      <NoteModal />
+    </>
   )
 }
 

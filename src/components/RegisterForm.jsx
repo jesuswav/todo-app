@@ -46,7 +46,7 @@ const RegisterForm = () => {
                     textAlign: 'center',
                   }}
                 >
-                  Log in with your account to have access to the aplication!
+                  Create an account to have access to the aplication!
                 </Text>
                 <TextInput
                   style={{

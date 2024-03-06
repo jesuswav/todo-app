@@ -1,5 +1,5 @@
-import React from 'react'
-import { useContext } from 'react'
+import React, { useEffect } from 'react'
+import { useContext, useState } from 'react'
 import {
   View,
   Text,
@@ -10,8 +10,22 @@ import {
 } from 'react-native'
 import { TodoContext } from '../context'
 
-const NoteModal = (data) => {
+const NoteModal = () => {
   const { noteModal, setNoteModal } = useContext(TodoContext)
+  const { modalData, setModalData } = useContext(TodoContext)
+
+  const { updateNotes } = useContext(TodoContext)
+  const [title, setTitle] = useState('')
+  const [note, setNote] = useState('')
+
+  useEffect(() => {
+    setTitle(modalData.title)
+    setNote(modalData.note)
+  }, [modalData])
+
+  const editNote = () => {
+    updateNotes({ title: title, note: note })
+  }
 
   return (
     <View>
@@ -43,7 +57,8 @@ const NoteModal = (data) => {
               }}
               // onChange={}
               placeholder='Title'
-              value={data.data.title}
+              value={title}
+              onChange={(event) => setTitle(event.nativeEvent.text)}
             />
             {/* Text area */}
             <TextInput
@@ -64,7 +79,8 @@ const NoteModal = (data) => {
               placeholder='Note'
               multiline={true}
               numberOfLines={4}
-              value={data.data.note}
+              value={note}
+              onChange={(event) => setNote(event.nativeEvent.text)}
             />
             <Pressable
               style={{
@@ -81,9 +97,7 @@ const NoteModal = (data) => {
                 borderWidth: 3.5,
                 marginHorizontal: 8,
               }}
-              onPress={() => {
-                setNoteModal(!noteModal)
-              }}
+              onPress={() => editNote()}
             >
               <Text
                 style={{

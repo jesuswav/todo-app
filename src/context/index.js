@@ -13,6 +13,7 @@ function TodoProvider({ children }) {
   const [registerModal, setRegisterModal] = useState(false)
   const [noteModal, setNoteModal] = useState(false)
   const [newNoteModal, setNewNoteModal] = useState(false)
+  const [modalData, setModalData] = useState({})
 
   const {
     data: todoList,
@@ -27,8 +28,6 @@ function TodoProvider({ children }) {
     setNotes(notesList)
     // setUsers(usersList)
   }, [todoList, notesList])
-
-  console.log(notes)
 
   // FUNCTIONS FOR TODOS ----------
   const addTodos = (text) => {
@@ -91,6 +90,7 @@ function TodoProvider({ children }) {
     <TodoContext.Provider
       value={{
         todos,
+        notes,
         setTodos,
         logged,
         setLogged,
@@ -102,6 +102,8 @@ function TodoProvider({ children }) {
         setNoteModal,
         newNoteModal,
         setNewNoteModal,
+        modalData,
+        setModalData,
         addTodos,
         deleteTodo,
         completeTodo,

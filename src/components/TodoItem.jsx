@@ -28,8 +28,15 @@ const TodoItem = (data) => {
             />
           )}
         </Pressable>
-        <View>
-          <Text style={{ fontSize: 18, fontWeight: '600' }}>
+        <View style={{ flex: 1}}>
+          <Text
+            style={{
+              flexWrap: 'wrap',
+              width: '100%',
+              fontSize: 18,
+              fontWeight: '600',
+            }}
+          >
             {data.data.text}
           </Text>
         </View>
@@ -47,9 +54,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: '100%',
-    marginBottom: 4,
+    marginBottom: 18,
     paddingHorizontal: 10,
+    paddingRight: 34
   },
 })
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   View,
   Text,
@@ -12,7 +12,15 @@ import {
 import { TodoContext } from '../context'
 
 const NewNote = () => {
+  const { addNotes } = useContext(TodoContext)
   const { newNoteModal, setNewNoteModal } = useContext(TodoContext)
+  const [title, setTitle] = useState('')
+  const [note, setNote] = useState('')
+
+  const createNote = () => {
+    addNotes({ title: title, note: note })
+  }
+
   return (
     <>
       <View>
@@ -49,7 +57,7 @@ const NewNote = () => {
                     marginBottom: 16,
                     color: 'gray',
                   }}
-                  // onChange={}
+                  onChange={(event) => setTitle(event.nativeEvent.text)}
                   placeholder='Title'
                 />
                 {/* Text area */}
@@ -67,7 +75,7 @@ const NewNote = () => {
                     marginBottom: 16,
                     color: 'gray',
                   }}
-                  // onChange={}
+                  onChange={(event) => setNote(event.nativeEvent.text)}
                   placeholder='Note'
                   multiline={true}
                   numberOfLines={4}
@@ -97,7 +105,8 @@ const NewNote = () => {
                     marginHorizontal: 8,
                   }}
                   onPress={() => {
-                    setNewNoteModal(!newNoteModal)
+                    createNote()
+                    setNewNoteModal(false)
                   }}
                 >
                   <Text
