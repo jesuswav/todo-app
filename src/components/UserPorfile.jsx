@@ -1,7 +1,8 @@
-import react from 'react'
+import react, { useContext } from 'react'
 import { View, Text } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { TodoContext } from '../context'
 
 const user = {
   name: 'Jonh Brew',
@@ -11,6 +12,9 @@ const user = {
   country: 'US',
 }
 const UserPorfile = () => {
+  const { loggedUser } = useContext(TodoContext)
+  console.log('Logged user: ', loggedUser)
+
   return (
     <View
       style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}
@@ -30,7 +34,7 @@ const UserPorfile = () => {
         />
       </View>
       <Text style={{ fontSize: 26, fontWeight: 'bold', marginBottom: 10 }}>
-        {user.name}
+        {loggedUser.username}
       </Text>
       <Text style={{ fontSize: 20, fontWeight: '500', marginBottom: 8 }}>
         {user.age}

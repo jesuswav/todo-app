@@ -26,10 +26,12 @@ import NotesPage from './NotesPage'
 import { TodoContext } from '../context'
 
 const LoggedScreen = () => {
+  const { setLoggedUser } = useContext(TodoContext)
+
   const [modalVisible, setModalVisible] = useState(false)
   const [taskScreen, setTaskScreen] = useState(true)
   const [screenName, setScrenName] = useState('Tasks')
-  const { todos, setTodos } = useContext(TodoContext)
+  const { todos } = useContext(TodoContext)
   const { logged, setLogged } = useContext(TodoContext)
 
   const PorfileModal = () => (
@@ -39,7 +41,6 @@ const LoggedScreen = () => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.')
           setModalVisible(!modalVisible)
         }}
       >
@@ -64,7 +65,10 @@ const LoggedScreen = () => {
                   borderWidth: 2,
                   marginTop: 10,
                 }}
-                onPress={() => setLogged(!logged)}
+                onPress={() => {
+                  setLogged(!logged)
+                  setLoggedUser({})
+                }}
               >
                 <Text
                   style={{
@@ -102,7 +106,7 @@ const LoggedScreen = () => {
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              marginTop: 18,
+              marginVertical: 12,
             }}
           >
             <FontAwesomeIcon

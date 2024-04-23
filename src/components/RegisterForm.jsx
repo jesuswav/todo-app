@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   View,
   Modal,
@@ -12,8 +12,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 const RegisterForm = () => {
-  const { logged, setLogged } = useContext(TodoContext)
+  const { setLoggedUser } = useContext(TodoContext)
+
+  const { addUser } = useContext(TodoContext)
+  const { setLogged } = useContext(TodoContext)
   const { registerModal, setRegisterModal } = useContext(TodoContext)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const createUser = () => {
+    setLogged(true)
+    setLoggedUser({ username: username, password: password })
+    setRegisterModal(false)
+    addUser({ username: username, password: password })
+  }
 
   return (
     <View style={styles.centeredView}>
@@ -64,6 +76,7 @@ const RegisterForm = () => {
                     color: 'gray',
                   }}
                   placeholder='user'
+                  onChange={(event) => setUsername(event.nativeEvent.text)}
                 />
                 <TextInput
                   style={{
@@ -81,6 +94,7 @@ const RegisterForm = () => {
                   }}
                   placeholder='password'
                   secureTextEntry={true}
+                  onChange={(event) => setPassword(event.nativeEvent.text)}
                 />
               </View>
             </View>
@@ -107,8 +121,7 @@ const RegisterForm = () => {
                   marginTop: 10,
                 }}
                 onPress={() => {
-                  setLogged(true)
-                  setRegisterModal(false)
+                  createUser()
                 }}
               >
                 <Text

@@ -12,19 +12,23 @@ import { TodoContext } from '../context'
 
 const NoteModal = () => {
   const { noteModal, setNoteModal } = useContext(TodoContext)
-  const { modalData, setModalData } = useContext(TodoContext)
+  const { modalData } = useContext(TodoContext)
 
   const { updateNotes } = useContext(TodoContext)
   const [title, setTitle] = useState('')
   const [note, setNote] = useState('')
+  const [lastTitle, setLastTitle] = useState('')
 
   useEffect(() => {
     setTitle(modalData.title)
     setNote(modalData.note)
+    setLastTitle(modalData.title)
   }, [modalData])
+  console.log('Titulo: ', title)
 
   const editNote = () => {
-    updateNotes({ title: title, note: note })
+    console.log('Last title: ', lastTitle)
+    updateNotes({ title: title, note: note }, lastTitle)
   }
 
   return (

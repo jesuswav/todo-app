@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   View,
   Modal,
@@ -12,8 +12,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
 const LoginForm = () => {
+  const { users, setUsers } = useContext(TodoContext)
+  const { loggedUser, setLoggedUser } = useContext(TodoContext)
+
   const { logged, setLogged } = useContext(TodoContext)
   const { loginModal, setLoginModal } = useContext(TodoContext)
+  const [loginUser, setLoginUser] = useState('')
+  const [loginPassword, setLoginPassword] = useState('')
+  const [error, setError] = useState(false)
+
+  const login = () => {
+    users.map((user) => {
+      if (user.username === loginUser && user.password === loginPassword) {
+        setLogged(!logged)
+        setLoginModal(false)
+        setLoggedUser({ username: user.username, password: user.password })
+      } else {
+        console.log('Datos incorrectos')
+        setError(true)
+      }
+    })
+  }
 
   return (
     <View style={styles.centeredView}>
@@ -30,7 +49,11 @@ const LoginForm = () => {
                     justifyContent: 'center',
                   }}
                 >
-                  <FontAwesomeIcon icon={faRightToBracket} size={28} style={{marginRight: 6}}/>
+                  <FontAwesomeIcon
+                    icon={faRightToBracket}
+                    size={28}
+                    style={{ marginRight: 6 }}
+                  />
                   <Text style={styles.modalText}>Log in!!</Text>
                 </View>
                 <Text
@@ -60,6 +83,7 @@ const LoginForm = () => {
                     color: 'gray',
                   }}
                   placeholder='user'
+                  onChange={(event) => setLoginUser(event.nativeEvent.text)}
                 />
                 <TextInput
                   style={{
@@ -77,8 +101,21 @@ const LoginForm = () => {
                   }}
                   placeholder='password'
                   secureTextEntry={true}
+                  onChange={(event) => setLoginPassword(event.nativeEvent.text)}
                 />
               </View>
+            </View>
+            <View
+              style={[
+                styles.errorMessage,
+                error === false ? styles.errorVisible : null,
+              ]}
+            >
+              <Text
+                style={{ color: 'red', fontWeight: '600', textAlign: 'center' }}
+              >
+                Check if your username or password are correct!
+              </Text>
             </View>
             <View
               style={{
@@ -102,10 +139,7 @@ const LoginForm = () => {
                   borderWidth: 2,
                   marginTop: 10,
                 }}
-                onPress={() => {
-                  setLogged(!logged)
-                  setLoginModal(false)
-                }}
+                onPress={() => login()}
               >
                 <Text
                   style={{
@@ -201,6 +235,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 22,
     fontWeight: 'bold',
+  },
+  errorMessage: {
+    marginBottom: 16,
+  },
+  errorVisible: {
+    display: 'none',
   },
 })
 
