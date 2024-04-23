@@ -6,7 +6,9 @@ const TodoContext = React.createContext()
 function TodoProvider({ children }) {
   const [todos, setTodos] = useState([])
   const [notes, setNotes] = useState([])
-  // const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([])
+
+  const [loggedUser, setLoggedUser] = useState({})
 
   const [logged, setLogged] = useState(false)
   const [loginModal, setLoginModal] = useState(false)
@@ -14,6 +16,7 @@ function TodoProvider({ children }) {
   const [noteModal, setNoteModal] = useState(false)
   const [newNoteModal, setNewNoteModal] = useState(false)
   const [modalData, setModalData] = useState({})
+  console.log('modal data', modalData.title)
 
   const {
     data: todoList,
@@ -26,8 +29,11 @@ function TodoProvider({ children }) {
   useEffect(() => {
     setTodos(todoList)
     setNotes(notesList)
-    // setUsers(usersList)
+    setUsers(usersList)
   }, [todoList, notesList])
+
+  console.log('users', users)
+  console.log('notes', notes)
 
   // FUNCTIONS FOR TODOS ----------
   const addTodos = (text) => {
@@ -66,9 +72,16 @@ function TodoProvider({ children }) {
     })
   }
 
-  const updateNotes = (update) => {
+  const updateNotes = (update, lastTitle) => {
     const newNotes = [...notes]
-    const noteIndex = newNotes.findIndex((note) => note.title === update.title)
+    console.log('Value to update: ', update.title)
+    console.log('Last title from the function: ', lastTitle)
+    const noteIndex = newNotes.findIndex((note) => note.title === lastTitle)
+    const noteTitle = newNotes.findIndex((note) => console.log(note.title))
+    console.log('Titulo de la nota a actualizar: ', noteTitle)
+    console.log('Indice para actualizar: ', noteIndex)
+    console.log('notas para actualizar: ', newNotes)
+    console.log(newNotes[noteIndex])
     newNotes[noteIndex].title = update.title
     newNotes[noteIndex].note = update.note
     setNotes(newNotes)
@@ -86,11 +99,38 @@ function TodoProvider({ children }) {
     console.log('Nota borrada')
   }
 
+  // FUNTIONS FOR USERS --------
+  const addUser = (newUser) => {
+    setUsers((prevUsers) => {
+      const newUsers = [
+        ...prevUsers,
+        { username: newUser.username, password: newUser.password },
+      ]
+      saveUser(newUsers)
+      return newUsers
+    })
+  }
+
+  // const updateUsers = (update) => {
+  //   const newUsers = [...users]
+  //   const userIndex = newUsers.findIndex(
+  //     (user) => user.username === update.username
+  //   )
+  //   newUsers[userIndex].username = update.username
+  //   newUsers[userIndex].password = update.password
+  //   setUsers(newUsers)
+  //   saveUser(newUsers)
+  // }
+
   return (
     <TodoContext.Provider
       value={{
         todos,
         notes,
+        users,
+        loggedUser,
+        setLoggedUser,
+        setUsers,
         setTodos,
         logged,
         setLogged,
@@ -110,6 +150,7 @@ function TodoProvider({ children }) {
         addNotes,
         updateNotes,
         deleteNote,
+        addUser,
       }}
     >
       {children}

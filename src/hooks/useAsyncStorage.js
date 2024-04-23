@@ -8,7 +8,6 @@ const todoModel = {
 }
 
 const userModel = {
-  token: '001',
   username: 'jesuswav',
   password: '1234',
 }
@@ -46,6 +45,21 @@ const useAsyncStorage = () => {
 
     fetchData()
   }, [])
+
+  async function borrarTodosLosElementos() {
+    try {
+      // Obtén todas las claves almacenadas
+      const claves = await AsyncStorage.getAllKeys();
+  
+      // Elimina todas las claves
+      await AsyncStorage.multiRemove(claves);
+  
+      console.log('Todos los elementos de AsyncStorage han sido eliminados.');
+    } catch (error) {
+      console.error('Error al intentar eliminar elementos:', error);
+    }
+  }
+  // borrarTodosLosElementos()
 
   // Create a new todo
   function createTodo(todos) {
