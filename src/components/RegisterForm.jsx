@@ -21,6 +21,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('')
 
   const createUser = () => {
+    console.log('Creating user')
     setLogged(true)
     setLoggedUser({ username: username, password: password })
     setRegisterModal(false)

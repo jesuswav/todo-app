@@ -26,14 +26,15 @@ function TodoProvider({ children }) {
     createNote: saveNotes,
     createUser: saveUser,
   } = useAsyncStorage()
+
   useEffect(() => {
     setTodos(todoList)
     setNotes(notesList)
     setUsers(usersList)
-  }, [todoList, notesList])
+  }, [todoList, notesList, usersList])
 
-  console.log('users', users)
-  console.log('notes', notes)
+  console.log('Users in local storage: ', users)
+  console.log('notes', notesList)
 
   // FUNCTIONS FOR TODOS ----------
   const addTodos = (text) => {
@@ -74,14 +75,8 @@ function TodoProvider({ children }) {
 
   const updateNotes = (update, lastTitle) => {
     const newNotes = [...notes]
-    console.log('Value to update: ', update.title)
-    console.log('Last title from the function: ', lastTitle)
     const noteIndex = newNotes.findIndex((note) => note.title === lastTitle)
     const noteTitle = newNotes.findIndex((note) => console.log(note.title))
-    console.log('Titulo de la nota a actualizar: ', noteTitle)
-    console.log('Indice para actualizar: ', noteIndex)
-    console.log('notas para actualizar: ', newNotes)
-    console.log(newNotes[noteIndex])
     newNotes[noteIndex].title = update.title
     newNotes[noteIndex].note = update.note
     setNotes(newNotes)
@@ -96,16 +91,17 @@ function TodoProvider({ children }) {
     newNotes.splice(noteIndex, 1)
     saveNotes(newNotes)
     setNotes(newNotes)
-    console.log('Nota borrada')
   }
 
   // FUNTIONS FOR USERS --------
   const addUser = (newUser) => {
     setUsers((prevUsers) => {
+      console.log('Nuevo usuario: ', newUser)
       const newUsers = [
         ...prevUsers,
         { username: newUser.username, password: newUser.password },
       ]
+      console.log('Nuevos usuarios: ', newUsers)
       saveUser(newUsers)
       return newUsers
     })
