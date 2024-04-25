@@ -22,16 +22,23 @@ const LoginForm = () => {
   const [error, setError] = useState(false)
 
   const login = () => {
-    users.map((user) => {
-      if (user.username === loginUser && user.password === loginPassword) {
-        setLogged(!logged)
-        setLoginModal(false)
-        setLoggedUser({ username: user.username, password: user.password })
-      } else {
-        console.log('Datos incorrectos')
-        setError(true)
-      }
-    })
+    console.log('Iniciar sesion')
+    console.log('Usuarios registrados: ', users)
+    if (users.length >= 1) {
+      console.log('Usuario guardado: ', users)
+      users.map((user) => {
+        if (user.username === loginUser && user.password === loginPassword) {
+          setLogged(!logged)
+          setLoginModal(false)
+          setLoggedUser({ username: user.username, password: user.password })
+        } else {
+          console.log('Datos incorrectos')
+          setError(true)
+        }
+      })
+    } else {
+      console.log('You should make a register first.')
+    }
   }
 
   return (

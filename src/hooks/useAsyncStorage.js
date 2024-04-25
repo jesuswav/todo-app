@@ -34,10 +34,14 @@ const useAsyncStorage = () => {
         // get notes
         const jsonNotes = await AsyncStorage.getItem('notes')
         setNotes(jsonNotes != null ? JSON.parse(jsonNotes) : [])
+        console.log('Notas-----------: ', notes)
 
         // get users
         const jsonUsers = await AsyncStorage.getItem('users')
+        console.log('Users from the hook:', jsonUsers)
         setUsers(jsonUsers != null ? JSON.parse(jsonUsers) : [])
+        // setUsers(JSON.parse(jsonUsers))
+        console.log('Users from the hook state: ', users)
       } catch (error) {
         console.error('Error al obtener datos de AsyncStorage:', error)
       }
@@ -49,14 +53,14 @@ const useAsyncStorage = () => {
   async function borrarTodosLosElementos() {
     try {
       // Obtén todas las claves almacenadas
-      const claves = await AsyncStorage.getAllKeys();
-  
+      const claves = await AsyncStorage.getAllKeys()
+
       // Elimina todas las claves
-      await AsyncStorage.multiRemove(claves);
-  
-      console.log('Todos los elementos de AsyncStorage han sido eliminados.');
+      await AsyncStorage.multiRemove(claves)
+
+      console.log('Todos los elementos de AsyncStorage han sido eliminados.')
     } catch (error) {
-      console.error('Error al intentar eliminar elementos:', error);
+      console.error('Error al intentar eliminar elementos:', error)
     }
   }
   // borrarTodosLosElementos()
